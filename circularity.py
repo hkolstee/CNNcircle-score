@@ -2,6 +2,7 @@ from asyncore import loop
 from PIL import Image
 import numpy as np
 import os.path
+import sys
 
 np.set_printoptions(edgeitems=30, linewidth=100000, 
                     formatter=dict(float=lambda x: "%.3g" % x))
@@ -104,12 +105,7 @@ def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     # read image of circle
-    # image = Image.open(os.path.join(current_dir, 'test_perim.png'))
-    image = Image.open(os.path.join(current_dir, 'perfect_circle.png'))
-    # image = Image.open(os.path.join(current_dir, 'perfect_circle_small.png'))
-    # image = Image.open(os.path.join(current_dir, 'weird_shape.png'))
-    # image = Image.open(os.path.join(current_dir, 'weird_shape_small.png'))
-    # image = Image.open(os.path.join(current_dir, 'smallest.png'))
+    image = Image.open(os.path.join(current_dir, "dataset/" + sys.argv[1]))
     width, _ = image.size
 
     # 800x800, (0,0) top left
