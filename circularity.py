@@ -95,14 +95,21 @@ def calculateArea(perimeter):
 
 # The formula to calculate the circularity of a shape
 # circularity = (perimeter^2) / (4*pi * area)
-def calculateCircularity(perimeterLength, area):
-    return ((4 * np.pi * area) / pow(perimeterLength, 2))
+def calculateCircularity(perimeterLength, area): 
+    # the way the perimeter coords is found (on the line not in the line)
+    #   we need to add a factor of 10% approximately for perfect circles
+    return ((4 * np.pi * area) / pow(perimeterLength * 1.1, 2))
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     # read image of circle
+    # image = Image.open(os.path.join(current_dir, 'test_perim.png'))
     image = Image.open(os.path.join(current_dir, 'perfect_circle.png'))
+    # image = Image.open(os.path.join(current_dir, 'perfect_circle_small.png'))
+    # image = Image.open(os.path.join(current_dir, 'weird_shape.png'))
+    # image = Image.open(os.path.join(current_dir, 'weird_shape_small.png'))
+    # image = Image.open(os.path.join(current_dir, 'smallest.png'))
     width, _ = image.size
 
     # 800x800, (0,0) top left
@@ -111,18 +118,20 @@ def main():
     # find a coordinate of the circle to start calculating the perimeter
     (circle_startX, circle_startY) = findCircle(pixel_array, width/2, width)
 
-    pixel_array[circle_startX, circle_startY] = 100
-    perimeter = calculatePerimeter(pixel_array, circle_startX, circle_startY)
-    area = calculateArea(perimeter)
+    # find the coordinates that make the perimeter
+    perimeterCoords = calculatePerimeter(pixel_array, circle_startX, circle_startY)
+    
+    # find the area of the shape within the perimeter
+    area = calculateArea(perimeterCoords)
 
-    circularity = calculateCircularity(len(perimeter), area)
+    # calculate the circularity
+    circularity = calculateCircularity(len(perimeterCoords), area)
 
-    print(len(perimeter))
-    print(area)
-    print(circularity)
+    # 
+    print("Perimeter, Area, Circularity = " + str(len(perimeterCoords)) + ", " + str(area) + ", " + str(circularity))
 
-    newIm = Image.fromarray(pixel_array)
-    newIm.save('test3.png')
+    # newIm = Image.fromarray(pixel_array)
+    # newIm.save('test3.png')
 
 if __name__ == "__main__":
     main()
