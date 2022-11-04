@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class myAppConfig(AppConfig):
+class circleScoreConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'circleScoreApp'
