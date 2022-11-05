@@ -4,14 +4,15 @@
 </head>
 <body>
     <div align="right">
-    <a href="/">Home</a>
-    |<a href="/index">Gallery</a>
+    <a href = {% url 'drawing' %}>Home</a>
+    |<a href = {% url 'index' %}>Gallery</a>        
     </div>
     <hr>
     {% if all_circles_list %}
         <ul>
         {% for circle in all_circles_list %}
-            <li><a href="/index/{{ circle.id }}/">{{ circle }}</a></li>
+            <!-- <li><a href="/index/{{ circle.id }}/">{{ circle }}</a></li> -->
+            <li><a href={% url 'circle' circle.id %}>{{ circle }}</a></li>            
         {% endfor %}
         </ul>
     {% else %}

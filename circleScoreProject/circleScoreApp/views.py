@@ -7,7 +7,7 @@ from .models import Circle
 
 # Create your views here.
 def drawing(request):
-    return HttpResponse("Draw a circle!")
+    return render(request, 'drawing.html')
 
 def index(request):
     all_circles_list = Circle.objects.order_by('-draw_date')

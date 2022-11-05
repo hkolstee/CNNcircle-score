@@ -4,8 +4,8 @@
 </head>
 <body>
     <div align="right">
-    <a href="/">Home</a>
-    |<a href="/files">Gallery</a>
+    <a href = {% url 'drawing' %}>Home</a>
+    |<a href = {% url 'index' %}>Gallery</a>
     </div>
     <hr>
     {% block content %}{% endblock %}
