@@ -1,13 +1,14 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Paint App</title>
-</head>
-<body>
-    <div align="right">
-    <a href = {% url 'drawing' %}>Home</a>
-    |<a href = {% url 'index' %}>Gallery</a>
-    </div>
-    <hr>
-    {% block content %}{% endblock %}
-</body>
+    <head>
+      <title></title>
+    </head>
+    <body style="background-color:grey;">
+        <div align="right">
+        <a href = {% url 'drawing' %}>Home</a>
+        |<a href = {% url 'index' %}>Gallery</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
 </html>

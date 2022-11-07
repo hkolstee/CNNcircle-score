@@ -1,22 +1,23 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Circle-score</title>
-</head>
-<body>
-    <div align="right">
-    <a href = {% url 'drawing' %}>Home</a>
-    |<a href = {% url 'index' %}>Gallery</a>        
-    </div>
-    <hr>
-    {% if all_circles_list %}
-        <ul>
-        {% for circle in all_circles_list %}
-            <!-- <li><a href="/index/{{ circle.id }}/">{{ circle }}</a></li> -->
-            <li><a href={% url 'circle' circle.id %}>{{ circle }}</a></li>            
-        {% endfor %}
-        </ul>
-    {% else %}
-    <p>No circles are available.</p>
-{% endif %}
-</body>
+    <head>
+      <title></title>
+    </head>
+    <body style="background-color:grey;">
+        <div align="right">
+        <a href = {% url 'drawing' %}>Home</a>
+        |<a href = {% url 'index' %}>Gallery</a>        
+        </div>
+        <hr>
+        {% if all_circles_list %}
+            <ul>
+            {% for circle in all_circles_list %}
+                <!-- <li><a href="/index/{{ circle.id }}/">{{ circle }}</a></li> -->
+                <li><a href={% url 'circle' circle.id %}>{{ circle }}</a></li>            
+            {% endfor %}
+            </ul>
+        {% else %}
+        <p>No circles are available.</p>
+    {% endif %}
+    </body>
 </html>
