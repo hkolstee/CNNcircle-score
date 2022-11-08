@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title></title>
-    </head>
-    <body style="background-color:grey;">
-        <div align="right">
-        <a href = {% url 'drawing' %}>Home</a>
-        |<a href = {% url 'index' %}>Gallery</a>
-        </div>
-        <hr>
-        <big><b>Circularity: {{ circle.circularity }}</b></big>
-        <ul>
-            <li>Drawn by: {{ circle.artist_name }}</li>
-            <li>Drawn on: {{ circle.draw_date }}</li>
-            <!-- <li>{{ circle.circle.url }}</li> -->
-            <img src = {{ circle.circle.url }}/>
-        </ul>
-    </body>
-</html>
+{% extends 'base_template.html' %}
+
+{% block content %}
+
+<big><b>Circularity: {{ circle.circularity }}</b></big>
+<ul>
+    <li>Drawn by: {{ circle.artist_name }}</li>
+    <li>Drawn on: {{ circle.draw_date }}</li>
+    <img src = {{ circle.circle.url }}/>
+</ul>
+
+{% endblock %}

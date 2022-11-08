@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Circle Score</title>
     </head>
     <body style="background-color:grey;">
         <div align="right">
@@ -9,6 +11,8 @@
         |<a href = {% url 'index' %}>Gallery</a>
         </div>
         <hr>
-        {% block content %}{% endblock %}
+        {% block content %}
+        <!-- Here comes html code of non template html file -->
+        {% endblock %}
     </body>
 </html>
