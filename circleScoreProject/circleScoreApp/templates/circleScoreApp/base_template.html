@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet">
+        <link rel = "stylesheet" href = {% static 'circleScoreApp/style.css' %}>
+
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>Circle Score</title>
+    </head>
+    <body>
+        <div align="right">
+        <a href = {% url 'drawing' %}>Home</a>
+        | <a href = {% url 'index' %}>Gallery</a>
+        </div>
+        <hr>
+        {% block content %}
+        <!-- Here comes html code of non template html file -->
+        {% endblock %}
+    </body>
+</html>

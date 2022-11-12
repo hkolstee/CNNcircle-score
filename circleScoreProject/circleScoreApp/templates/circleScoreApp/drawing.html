@@ -1,0 +1,39 @@
+{% extends 'circleScoreApp/base_template.html' %}
+
+{% load static %}
+
+{% block content %}
+<script src = {% static 'circleScoreApp/canvas.js' %}></script>
+
+<div align=center> 
+	<big><b>Draw a circle!</b></big>
+</div>
+<div style = "text-align:center;">
+	<canvas id="canvas" width="800" height="800">Update your browser to support HTML5 Canvas</canvas>
+</div>
+<div align=center>
+	<form action="" method="post" id="form_id">
+		{% csrf_token %}
+		{{ form }}
+		{% comment %} <input type="hidden" name="image_height" id="image_height"> {% endcomment %}
+		{% comment %} <input type="hidden" name="image_width" id="image_width"> {% endcomment %}
+		<input type="hidden" name="image" id="image">
+		<input type="submit" name="submit" value="Judge my horrible circle" onclick="save()">
+	</form>
+</div>
+
+{% endblock %}
+
+{% comment %} <canvas id="canvas" height="300px" width="300px"></canvas> 
+<form action="" method="POST" id="form1"> 
+	{% csrf_token %} 
+	<input type="hidden" name="canvasData" id="my_hidden"> 
+	<input type="submit" name="submit" value="submit" onclick="save()"> 
+</form> 
+<script> 
+	function save(){ 
+		var canvas = document.getElementById('canvas'); 
+		document.getElementById('my_hidden').value = canvas.toDataURL('image/png');
+		document.forms["form1"].submit(); 
+	} 
+</script> {% endcomment %}

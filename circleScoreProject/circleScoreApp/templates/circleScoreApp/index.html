@@ -1,11 +1,12 @@
-{% extends 'base_template.html' %}
+{% extends 'circleScoreApp/base_template.html' %}
+
+{% load static %}
 
 {% block content %}
 
 {% if all_circles_list %}
     <ul>
     {% for circle in all_circles_list %}
-        <!-- <li><a href="/index/{{ circle.id }}/">{{ circle }}</a></li> -->
         <li><a href={% url 'circle' circle.id %}>{{ circle }}</a></li>            
     {% endfor %}
     </ul>
