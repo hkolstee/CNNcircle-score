@@ -18,3 +18,8 @@ class Circle(models.Model):
     # custom method to see if drawn today (for now 24 hours before)
     def wasDrawnToday(self):
         return self.draw_date >= timezone.now() - datetime.timedelta(days=1)
+
+    # to also delete the local file override the delete function
+    def delete(self, using=None, keep_parents=False):
+        self.circle.delete()
+        super().delete()

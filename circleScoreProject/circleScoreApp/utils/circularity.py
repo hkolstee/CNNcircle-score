@@ -109,7 +109,8 @@ def calculateCircularity(image):
     perimeterCoords = calculatePerimeter(pixel_array, circle_startX, circle_startY)
     area = calculateArea(perimeterCoords)
 
-    return Circularity(len(perimeterCoords), area)
+    # fine tuned to a perfect circle
+    return (Circularity(len(perimeterCoords), area) - 0.0188808699) ** 3
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))

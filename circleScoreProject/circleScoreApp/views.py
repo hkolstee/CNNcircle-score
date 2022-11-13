@@ -1,18 +1,18 @@
 from django.shortcuts import render, redirect
-from django.template import loader
-
+from django.core.files.base import ContentFile
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+
 from circleScoreApp.forms import circleForm
 
 from .models import Circle
 from .utils.circularity import calculateCircularity
 
 from io import BytesIO, StringIO
-from binascii import a2b_base64
 from PIL import Image
 import base64
 import re
-
+import datetime
+import uuid
 
 
 # Create your views here.
@@ -41,16 +41,25 @@ def drawing(request):
             # convert from x-channel to 1-channel grayscale
             image = image.convert("1")
 
-            image.save("testestest.png")
-            circ = calculateCircularity(image)
+            # culculate the circularity of the circle
+            circularity = calculateCircularity(image)
 
-            new_circle = Circle(artist_name = artist_name, circle = image, circularity=circ)
+            # Create a file-like object to upload to the database (not PIL Image)
+            # + file name based on time of upload
+            image_io = BytesIO()
+            image.save(image_io, format='PNG')
+            file_name = str(uuid.uuid4().hex)
+            image_file = ContentFile(image_io.getvalue(), name=(file_name + ".png"))
+
+            # create new circle
+            new_circle = Circle(artist_name = artist_name, circle = image_file, circularity=circularity)
+
+            # save the circle 
             new_circle.save()
             
-            return redirect("index")
+            return redirect("circle", new_circle.id)
         
         else:
-            print("form not valid.")
             return redirect("drawing")
 
 def index(request):

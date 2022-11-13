@@ -41,7 +41,7 @@ window.addEventListener('load', () => {
         var mousePos = getMousePos(canvas, event);
 
         // line width, style (=round), and color
-        context.lineWidth = 3;
+        context.lineWidth = 2;
         context.lineCap = 'round';
         context.strokeStyle = 'white';
 
