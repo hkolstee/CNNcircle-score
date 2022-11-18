@@ -5,7 +5,7 @@ import datetime
 # Create your models here.
 class Circle(models.Model):
     artist_name = models.CharField(max_length = 200)
-    circularity = models.DecimalField(max_digits = 11, decimal_places=10)
+    circularity = models.DecimalField(max_digits = 16, decimal_places=10)
     circle = models.ImageField(upload_to='circles/')
     draw_date = models.DateTimeField(auto_now_add = True)
     

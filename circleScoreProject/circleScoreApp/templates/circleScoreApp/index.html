@@ -5,6 +5,11 @@
 {% block content %}
 
 {% if all_circles_list %}
+    {% if best_today %}
+        <div style="background-color: white; color: black; text-align: center;">
+            <h3><b> > TODAYS BEST: <a style="color: black;" href={% url 'circle' best_today.id %}>{{ best_today.circularity }}</a> < {{ best_today.artist_name }}</b></h3>
+        </div>
+    {% endif %}
     <table>
         <tr>
             <th>Circularity</th>

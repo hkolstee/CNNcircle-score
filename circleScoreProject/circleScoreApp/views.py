@@ -39,7 +39,7 @@ def drawing(request):
             image = Image.open(image_data)
 
             # convert from x-channel to 1-channel grayscale
-            image = image.convert("1")
+            image = image.convert("L")
             image.save("black.png")
 
             # culculate the circularity of the circle
@@ -65,9 +65,13 @@ def drawing(request):
 
 def index(request):
     all_circles_list = Circle.objects.order_by('-draw_date')
+    drawn_today = Circle.objects.filter(draw_date__date= datetime.date.today())
+    best_today = drawn_today.order_by('-circularity').first()
+    # best_today = drawn_today.order_by('circularity').first()
 
     context = {
         'all_circles_list': all_circles_list,
+        'best_today': best_today,
     }
 
     return render(request, 'circleScoreApp/index.html', context)

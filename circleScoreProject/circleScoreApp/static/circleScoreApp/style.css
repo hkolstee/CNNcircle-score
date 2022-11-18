@@ -1,5 +1,7 @@
 body {
-    background-color: Black;
+    background: black;
+    /* background: rgb(101,101,101); */
+    /* background: radial-gradient(circle, rgba(101,101,101,1) 0%, rgba(37,37,37,1) 100%); */
     font-family: 'Fira Code', monospace;
     color: white;
 }
@@ -7,6 +9,10 @@ body {
 a {
     color: white;
 }
+
+/* h {
+    font-size: 15px;
+} */
 
 #canvas {
     border: 2px solid white;
