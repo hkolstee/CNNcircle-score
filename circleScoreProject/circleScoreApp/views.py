@@ -40,6 +40,7 @@ def drawing(request):
 
             # convert from x-channel to 1-channel grayscale
             image = image.convert("1")
+            image.save("black.png")
 
             # culculate the circularity of the circle
             circularity = calculateCircularity(image)

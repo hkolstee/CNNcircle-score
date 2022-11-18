@@ -5,11 +5,20 @@
 {% block content %}
 
 {% if all_circles_list %}
-    <ul>
-    {% for circle in all_circles_list %}
-        <li><a href={% url 'circle' circle.id %}>{{ circle }}</a></li>            
-    {% endfor %}
-    </ul>
+    <table>
+        <tr>
+            <th>Circularity</th>
+            <th>Artist</th>
+            <th>Draw date</th>
+        </tr>
+        {% for circle in all_circles_list %}
+            <tr>
+                <td><a href={% url 'circle' circle.id %}>{{ circle.circularity }}</a></td>
+                <td>{{ circle.artist_name }}</td>
+                <td>{{ circle.draw_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>            
 {% else %}
     <p>No circles are available.</p>
 {% endif %}

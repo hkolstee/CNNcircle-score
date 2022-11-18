@@ -8,20 +8,21 @@ np.set_printoptions(edgeitems=30, linewidth=100000,
                     formatter=dict(float=lambda x: "%.3g" % x))
 
 # recursively try to find the circle
-def findCircle(pixel_array, startX, width):
+def findCircle(pixel_array, startX, step, width, height):
     # stop condition
-    if (startX < width/20 or startX > width - width/20):
-        return (None, None)
+    if (step < width/200):
+        return (0, 0)
     
     x = int(startX)
     y = 0
 
-    while (y < 800):
+    while (y < height):
         if (pixel_array[x, y] > 0):
            return (x, y)
         y += 1
 
-    return min(findCircle(pixel_array, startX/2, width), findCircle(pixel_array, startX + startX/2, width))
+    return max(findCircle(pixel_array, startX + step, step/2, width, height), 
+                findCircle(pixel_array, startX - step, step/2, width, height))
 
 # find the next step around the circle
 def findNextStep(pixel_array, currentX, currentY):
@@ -102,43 +103,48 @@ def Circularity(perimeterLength, area):
     return ((4 * np.pi * area) / pow(perimeterLength * 1.1, 2))
 
 def calculateCircularity(image):
-    width, _ = image.size
+    width, height = image.size
     pixel_array = np.array(image)
 
-    (circle_startX, circle_startY) = findCircle(pixel_array, width/2, width)
-    perimeterCoords = calculatePerimeter(pixel_array, circle_startX, circle_startY)
-    area = calculateArea(perimeterCoords)
+    (circle_startX, circle_startY) = findCircle(pixel_array, width/2, width/4, width, height)
 
-    # fine tuned to a perfect circle
-    return (Circularity(len(perimeterCoords), area) - 0.0188808699) ** 3
+    if (circle_startX or circle_startY):
+        perimeterCoords = calculatePerimeter(pixel_array, circle_startX, circle_startY)
+        area = calculateArea(perimeterCoords)
+
+        # fine tuned to a perfect circle
+        return (Circularity(len(perimeterCoords), area) - 0.0188808699) ** 3
+    else:
+        return 0
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     # read image of circle
-    image = Image.open(os.path.join(current_dir, "dataset/" + sys.argv[1]))
-    width, _ = image.size
+    image = Image.open(os.path.join(current_dir, "black.png"))
+    # image = Image.open(os.path.join(current_dir, "dataset/" + sys.argv[1]))
+    width, height = image.size
 
     # 800x800, (0,0) top left
     pixel_array = np.array(image)
     
     # find a coordinate of the circle to start calculating the perimeter
-    (circle_startX, circle_startY) = findCircle(pixel_array, width/2, width)
-
-    # find the coordinates that make the perimeter
-    perimeterCoords = calculatePerimeter(pixel_array, circle_startX, circle_startY)
+    (circle_startX, circle_startY) = findCircle(pixel_array, width/2, width/4, width, height)
     
-    # find the area of the shape within the perimeter
-    area = calculateArea(perimeterCoords)
+    if (circle_startX or circle_startY):
+        # find the coordinates that make the perimeter
+        perimeterCoords = calculatePerimeter(pixel_array, circle_startX, circle_startY)
+        
+        # find the area of the shape within the perimeter
+        area = calculateArea(perimeterCoords)
 
-    # calculate the circularity
-    circularity = Circularity(len(perimeterCoords), area)
+        # calculate the circularity
+        circularity = Circularity(len(perimeterCoords), area)
 
-    # 
-    print("Perimeter, Area, Circularity = " + str(len(perimeterCoords)) + ", " + str(area) + ", " + str(circularity))
+        print("Perimeter, Area, Circularity = " + str(len(perimeterCoords)) + ", " + str(area) + ", " + str(circularity))
+    else:
+        return 0
 
-    # newIm = Image.fromarray(pixel_array)
-    # newIm.save('test3.png')
 
 if __name__ == "__main__":
     main()

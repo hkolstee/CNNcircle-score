@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: Black;
     font-family: 'Fira Code', monospace;
     color: white;
 }
@@ -10,6 +10,24 @@ a {
 
 #canvas {
     border: 2px solid white;
+}
+
+th, td {
+    padding: 5px;
+    /* border-bottom: 1px solid gray; */
+}
+
+tr:not(:first-child):hover {
+    background-color: coral;
+}
+
+/* tr:nth-child(even) {background-color: #111111;} */
+
+table {
+    /* border: 1px solid white; */
+    width: 100%;
+    text-align: center;
+    border-spacing: 0px;
 }
 
 input[type=text] {
@@ -44,3 +62,4 @@ input[type=button], input[type=submit], input[type=reset] {
     margin: 8px 2px;
     cursor: pointer;
 }
+
