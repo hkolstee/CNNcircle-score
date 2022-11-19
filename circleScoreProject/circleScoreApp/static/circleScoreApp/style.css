@@ -1,10 +1,28 @@
 body {
-    background: black;
+    background: linear-gradient(-45deg, black, #383838, coral);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+    /* background: black; */
     /* background: rgb(101,101,101); */
     /* background: radial-gradient(circle, rgba(101,101,101,1) 0%, rgba(37,37,37,1) 100%); */
     font-family: 'Fira Code', monospace;
     color: white;
 }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
 
 a {
     color: white;
@@ -16,6 +34,7 @@ a {
 
 #canvas {
     border: 2px solid white;
+    color: black;
 }
 
 th, td {
