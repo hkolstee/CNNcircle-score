@@ -4,7 +4,6 @@ import numpy as np
 import os.path
 import sys
 import math
-import cv2 as cv
 from collections import namedtuple
 
 # After writing using namedtuple, found out it is rather expensive on creation

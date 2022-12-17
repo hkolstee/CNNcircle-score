@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
     const canvas = document.querySelector('#canvas');
     // get canvas context
     const context = canvas.getContext('2d');
+    context.fillStyle = "black";
+    context.fillRect(0, 0, canvas.width, canvas.height);
     
     // resizing
     // canvas.height = window.innerHeight;
