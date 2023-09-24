@@ -3,9 +3,7 @@ body {
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 	height: 100vh;
-    /* background: black; */
-    /* background: rgb(101,101,101); */
-    /* background: radial-gradient(circle, rgba(101,101,101,1) 0%, rgba(37,37,37,1) 100%); */
+
     font-family: 'Fira Code', monospace;
     color: white;
 }
@@ -58,7 +56,8 @@ table {
 input[type=text] {
     font-family: 'Fira Code', monospace;
     color: white;
-    background-color: black;
+    background-color: transparent;
+    /* opacity: 0.0; */
     
     /* width: 100%; */
     /* padding: 12px 20px; */
@@ -78,7 +77,7 @@ input[type=text] {
 input[type=button], input[type=submit], input[type=reset] {
     font-family: 'Fira Code', monospace;
     color: white;
-    background-color: grey;
+    background-color: gray;
     
     border: white;
     border-radius: 4px;
