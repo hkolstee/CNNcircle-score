@@ -1,0 +1,4 @@
+Django==4.2
+numpy==1.23.5
+Pillow==9.5.0
+torch==1.13.1+cpu
